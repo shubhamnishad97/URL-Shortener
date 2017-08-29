@@ -19,6 +19,7 @@ from django.conf import settings
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^(?P<shortcode>[\w-]+)/', include('shortener.urls'),name='redirectURL'),
 ]
 if settings.DEBUG:
     import debug_toolbar

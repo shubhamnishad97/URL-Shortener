@@ -1,15 +1,19 @@
 from django.db import models
+from django.conf import settings
 import random
 import string
 
-def code_generator(size=10,chars=string.ascii_letters+string.digits):
+# thank stackoverflow for this
+SIZE = getattr(settings,'SIZE',10)
+
+def code_generator(size=SIZE,chars=string.ascii_letters+string.digits):
     new_code = ''
     for i in range(size):
          new_code += random.choice(chars)
 
     return new_code
 
-def create_shortcode(instance,size=10):
+def create_shortcode(instance,size=SIZE):
     new_code = code_generator(size=size)
     data = instance.__class__
     qs_exists = data.objects.filter(short=new_code).exists()
@@ -27,7 +31,7 @@ class URLManager(models.Manager):
 # Create your models here.
 class shortenedUrl(models.Model):
     url = models.CharField(max_length=300)
-    short =models.CharField(max_length=15,unique=True,blank=True)
+    short =models.CharField(max_length=SIZE,unique=True,blank=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True)
