@@ -2,7 +2,7 @@ from django.db import models
 import random
 import string
 
-def code_generator(size=10,chars=string.ascii_lowercase+string.digits+string.ascii_uppercase):
+def code_generator(size=10,chars=string.ascii_letters+string.digits):
     new_code = ''
     for i in range(size):
          new_code += random.choice(chars)
@@ -17,12 +17,22 @@ def create_shortcode(instance,size=10):
         return create_shortcode(size=size)
     return new_code
 
+class URLManager(models.Manager):
+    def all(self,*args,**kwargs):
+        qs = super(URLManager, self).all(*args,**kwargs)
+        qs.filter(active=True)
+        return qs
+
+
 # Create your models here.
 class shortenedUrl(models.Model):
     url = models.CharField(max_length=300)
     short =models.CharField(max_length=15,unique=True,blank=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=True)
+
+    objects=URLManager
 
     def save(self, *args,**kwargs):
         if self.short is None or self.short=='':
