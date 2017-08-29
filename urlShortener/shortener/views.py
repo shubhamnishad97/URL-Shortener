@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse,HttpRequest
+from django.http import HttpResponseRedirect,HttpRequest,HttpResponse
 from .models import shortenedUrl
 
 # Create your views here.
@@ -7,8 +7,7 @@ from .models import shortenedUrl
 def redirectView(request, shortcode=None ,*args ,**kwargs ):
     try:
         obj = shortenedUrl.objects.get(short=shortcode)
-        return HttpResponse("Hello {sc}".format(sc=obj.url))
+        return HttpResponseRedirect(obj.url)
 
     except:
-        obj = shortenedUrl.objects.all().first()
         return HttpResponse("URL Does not exist")

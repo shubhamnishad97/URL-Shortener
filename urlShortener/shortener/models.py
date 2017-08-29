@@ -4,7 +4,7 @@ import random
 import string
 
 # thank stackoverflow for this
-SIZE = getattr(settings,'SIZE',10)
+SIZE = getattr(settings,'SIZE',5)
 
 def code_generator(size=SIZE,chars=string.ascii_letters+string.digits):
     new_code = ''
