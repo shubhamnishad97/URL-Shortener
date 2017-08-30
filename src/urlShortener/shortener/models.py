@@ -3,9 +3,11 @@ from django.conf import settings
 import random
 import string
 from .validators import valid_URL
+from django.core.urlresolvers import reverse
 
 # thank stackoverflow for this
 SIZE = getattr(settings,'SIZE',5)
+
 
 def code_generator(size=SIZE,chars=string.ascii_letters+string.digits):
     new_code = ''
@@ -36,6 +38,7 @@ class shortenedUrl(models.Model):
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True)
+    count = models.IntegerField(default=0)
 
     objects=URLManager
 
@@ -43,6 +46,11 @@ class shortenedUrl(models.Model):
         if self.short is None or self.short=='':
             self.short = create_shortcode(self)
         super(shortenedUrl,self).save(*args,**kwargs)
+
+    def get_short_url(self):
+        url_path = reverse("redirect",kwargs= {'shortcode':self.short})
+        return url_path
+
 
     def __str__(self):
         return str(self.url)

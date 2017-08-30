@@ -3,7 +3,6 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect,HttpRequest,HttpResponse
 from django.views import View
 from .forms import SubmitUrl
-
 from .models import shortenedUrl
 
 # Create your views here.
@@ -42,8 +41,10 @@ class HomeView(View):
                 'created':created
             }
             if created:
-                messages.add_message(request, messages.INFO, 'Shortened URL created')
+                messages.add_message(request, messages.SUCCESS, 'Shortened URL created')
             else:
+                obj.count+=1
+                obj.save()
                 messages.add_message(request, messages.INFO, 'Shortened URL already exists')
 
 

@@ -7,7 +7,11 @@
 		 {{form.as_p}}
 		<input type="submit" name="submit" value="click me">
 	</form>
+{% if object %}
 <div>
-	{{object.url}}<p>  </p>{{object.short}}
+	<p>{{object.url}}</p>
+    <a href="{{object.get_short_url}}">shortcode</a>
+    <p>{{object.count}}</p>
 </div>
+{% endif %}
 {% endblock %}
