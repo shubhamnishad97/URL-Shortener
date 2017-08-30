@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render
 from django.http import HttpResponseRedirect,HttpRequest,HttpResponse
 from django.views import View
@@ -28,11 +29,22 @@ class HomeView(View):
 
     def post(self,request,*args,**kwargs):
         form = SubmitUrl(request.POST)
-        if form.is_valid():
-            print(form.cleaned_data.get('url'))
-
         context = {
             "title": "Submit URL",
             "form": form
         }
+        if form.is_valid():
+            current_url=form.cleaned_data.get('url')
+            obj, created = shortenedUrl.objects.get_or_create(url=current_url)
+            context={
+                'title':'URL Shortened!',
+                'object':obj,
+                'created':created
+            }
+            if created:
+                messages.add_message(request, messages.INFO, 'Shortened URL created')
+            else:
+                messages.add_message(request, messages.INFO, 'Shortened URL already exists')
+
+
         return render(request, 'home.html',context)

@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 import random
 import string
+from .validators import valid_URL
 
 # thank stackoverflow for this
 SIZE = getattr(settings,'SIZE',5)
@@ -30,7 +31,7 @@ class URLManager(models.Manager):
 
 # Create your models here.
 class shortenedUrl(models.Model):
-    url = models.CharField(max_length=300)
+    url = models.CharField(max_length=300,validators=[valid_URL])
     short =models.CharField(max_length=SIZE,unique=True,blank=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
