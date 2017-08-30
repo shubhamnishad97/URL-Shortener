@@ -3,5 +3,6 @@ from . import views
 
 
 urlpatterns = [
-    url(r'^',views.redirectView,name='redirect'),
+    url(r'^$',views.HomeView.as_view(),name='home'),
+    url(r'^(?P<shortcode>[\w-]+)/',views.redirectView,name='redirect'),
 ]

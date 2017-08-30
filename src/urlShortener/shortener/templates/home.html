@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3 class="page-header">Hell</h3>
+	<form method="POST" action=".">
+	    {% csrf_token %}
+		<input type="text" name="name">
+		<input type="submit" name="submit" value="click me">
+	</form>
+{% endblock %}
