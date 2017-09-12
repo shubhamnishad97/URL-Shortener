@@ -1,17 +1,33 @@
 {% extends 'base.html' %}
 
+{% block title %}
+Shorten It!
+{% endblock %}
+
 {% block content %}
-<h3 class="page-header">{{title}}</h3>
-	<form method="POST" action=".">
-	    {% csrf_token %}
-		 {{form.as_p}}
-		<input type="submit" name="submit" value="click me">
-	</form>
-{% if object %}
-<div>
-	<p>{{object.url}}</p>
-    <a href="{{object.get_short_url}}">shortcode</a>
-    <p>{{object.count}}</p>
-</div>
-{% endif %}
+
+	<div class="text-center"> 
+	<h1 class="cover-heading">{{title}}</h1>
+	 <p class="lead">
+		<div>
+			<form method="POST" action=".">
+			    {% csrf_token %}
+				 {{form.as_p}}
+				<input class="btn btn-primary" type="submit" name="submit" value="Shorten url">
+			</form>
+	  	</div>	
+	</p>
+	</div>
+
+	{% if object %}
+	<p class="lead">
+	<div class="text-center">
+		<p>{{object.url}}</p>
+	    <a class="btn btn-primary btn-link" href="{{object.get_short_url}}">shortend Url</a>
+	    <p>{{object.count}}</p>
+	</div>
+	</p>
+	{% endif %}
+
+
 {% endblock %}

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>{{title}}</title>
+	<title>{% block title%}{% endblock %}</title>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,25 +10,44 @@
 	{% load staticfiles %}
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css"/>
     <script src="{% static 'js/jquery.min.js'%}"></script>
+    <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <link href="https://v4-alpha.getbootstrap.com/examples/cover/cover.css" rel="stylesheet">
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-	<div class="container theme-showcase" role="main">
+
+    <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+            <!-- displaying messages -->
+            {% if messages %}
+                {% for message in messages %}
+                  <div class="alert alert-{{ message.tags }}">  <!-- singular -->
+                    <a class="close" data-dismiss="alert">×</a>
+                    {{ message|safe }}
+                  </div>
+                {% endfor %}
+              {% endif %}
+              
+          <div class="inner cover">
+            <!-- displaying content of the child template -->
+            {% block content %}
+            {% endblock %}
+
+          </div>
+
+          
+
+        </div>
+
+      </div>
+
+    </div>
+	
     
 
-        <!-- displaying messages -->
-    {% if messages %}
-        {% for message in messages %}
-          <div class="alert alert-{{ message.tags }}">  <!-- singular -->
-            <a class="close" data-dismiss="alert">×</a>
-            {{ message|safe }}
-          </div>
-        {% endfor %}
-      {% endif %}
-
-	<!-- displaying content of the child template -->
-    {% block content %}
-	{% endblock %}
-	</div>
 </body>
 </html>
