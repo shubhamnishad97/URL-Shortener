@@ -5,28 +5,28 @@ Shorten It!
 {% endblock %}
 
 {% block content %}
-
-	<div class="text-center"> 
-	<h1>{{title}}</h1>
-	 
-		<div class="col-sm-4 offset-sm-4">
-			<form method="POST" action=".">
-			    {% csrf_token %}
-				 {{form.as_p}}
-				<input class="btn btn-primary" type="submit" name="submit" value="Shorten url">
-			</form>
-	  	</div>	
 	
-	</div>
+		<div class="text-center"> 
+			<h1>Shorten It!</h1>
+		 
+			<div>
+				<form method="POST" action=".">
+				    {% csrf_token %}
+					 {{form.as_p}}
+					<input class="btn btn-primary" type="submit" name="submit" value="Shorten url">
+				</form>
+		  	</div>	
+		
+		</div>
 
-	{% if object %}
+		{% if object %}
+		
+		<div class="text-center">
+			<p>{{object.url}}</p>
+		    <a class="btn btn-primary btn-link" href="{{object.get_short_url}}">{{object.get_short_url}}</a>
+		    <p>{{object.count}}</p>
+		</div>
 	
-	<div class="text-center">
-		<p>{{object.url}}</p>
-	    <a class="btn btn-primary btn-link" href="{{object.get_short_url}}">{{object.get_short_url}}</a>
-	    <p>{{object.count}}</p>
-	</div>
-
 	{% endif %}
 
 
