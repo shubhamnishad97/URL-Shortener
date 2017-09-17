@@ -7,26 +7,26 @@ Shorten It!
 {% block content %}
 
 	<div class="text-center"> 
-	<h1 class="cover-heading">{{title}}</h1>
-	 <p class="lead">
-		<div>
+	<h1>{{title}}</h1>
+	 
+		<div class="col-sm-4 offset-sm-4">
 			<form method="POST" action=".">
 			    {% csrf_token %}
 				 {{form.as_p}}
 				<input class="btn btn-primary" type="submit" name="submit" value="Shorten url">
 			</form>
 	  	</div>	
-	</p>
+	
 	</div>
 
 	{% if object %}
-	<p class="lead">
+	
 	<div class="text-center">
 		<p>{{object.url}}</p>
 	    <a class="btn btn-primary btn-link" href="{{object.get_short_url}}">{{object.get_short_url}}</a>
 	    <p>{{object.count}}</p>
 	</div>
-	</p>
+
 	{% endif %}
 
 
