@@ -16,16 +16,6 @@
 <body>
 <div id="particles-js"></div>
     
-            <!-- displaying messages -->
-            {% if messages %}
-                {% for message in messages %}
-                  <div class="alert alert-{{ message.tags }}">  <!-- singular -->
-                    <a class="close" data-dismiss="alert">×</a>
-                    {{ message|safe }}
-                  </div>
-                {% endfor %}
-              {% endif %}
-              
           <div id="main" class="display-text col-sm-4 offset-sm-4">
             <!-- displaying content of the child template -->
             {% block content %}

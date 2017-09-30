@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}
+Shorten It!
+{% endblock %}
+
+{% block content %}
+
+		{% if object %}
+		
+		<div class="text-center">
+			<!-- displaying messages -->
+            
+            {% if messages %}
+                {% for message in messages %}
+                  <div class="alert alert-{{ message.tags }}">  <!-- singular -->
+                    <a class="close" data-dismiss="alert">×</a>
+                    {{ message|safe }}
+                  </div>
+                {% endfor %}
+              {% endif %}
+
+              
+			<h1>Shorten It!</h1>
+			<br>
+			<p>{{object.url}}</p>
+			<div class="input-group input-group-lg">
+				<input class="form-control" type="text" value="{{object.get_short_url}}">
+		    </div>
+		    <br>
+		    <p>{{object.count}}</p>
+		    <a class="btn btn-primary" href="/">Shorten another Url</a>
+		</div>
+
+	   
+	{% endif %}
+
+{% endblock %}

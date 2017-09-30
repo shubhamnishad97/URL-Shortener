@@ -1,11 +1,9 @@
 {% extends 'base.html' %}
-
 {% block title %}
 Shorten It!
 {% endblock %}
 
 {% block content %}
-	
 		<div class="text-center"> 
 			<h1>Shorten It!</h1>
 		 
@@ -22,12 +20,16 @@ Shorten It!
 		{% if object %}
 		
 		<div class="text-center">
+			<br>
 			<p>{{object.url}}</p>
-		    <a class="btn btn-primary btn-link" href="{{object.get_short_url}}">{{object.get_short_url}}</a>
+			<div class="input-group input-group-lg">
+				<input class="form-control" type="text" value="{{object.get_short_url}}">
+		    </div>
+		    <br>
 		    <p>{{object.count}}</p>
 		</div>
-	
-	{% endif %}
 
+	   
+	{% endif %}
 
 {% endblock %}
