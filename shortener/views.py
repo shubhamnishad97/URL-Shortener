@@ -10,6 +10,8 @@ from .models import shortenedUrl
 def redirectView(request, shortcode=None ,*args ,**kwargs ):
     try:
         obj = shortenedUrl.objects.get(short=shortcode)
+        obj.count+=1
+        obj.save()
         return HttpResponseRedirect(obj.url)
 
     except:
@@ -43,8 +45,6 @@ class HomeView(View):
             if created:
                 messages.add_message(request, messages.SUCCESS, 'Shortened URL created')
             else:
-                obj.count+=1
-                obj.save()
                 messages.add_message(request, messages.INFO, 'Shortened URL already exists')
 
 
