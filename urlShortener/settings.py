@@ -25,7 +25,7 @@ SECRET_KEY = 'l1zh*k4d3qzb(@ah1m!9lodz0*zsm#rgrigqa9e0h+9w6$!3px'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1','192.168.31.146']
 
 
 # Application definition
@@ -123,3 +123,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 SIZE = 5
+MYURL = 'http://127.0.0.1:8000'

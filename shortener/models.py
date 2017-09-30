@@ -7,6 +7,7 @@ from django.core.urlresolvers import reverse
 
 # thank stackoverflow for this
 SIZE = getattr(settings,'SIZE',5)
+MYURL = getattr(settings,'MYURL','http://127.0.0.1:8000')
 
 
 def code_generator(size=SIZE,chars=string.ascii_letters+string.digits):
@@ -49,6 +50,7 @@ class shortenedUrl(models.Model):
 
     def get_short_url(self):
         url_path = reverse("redirect",kwargs= {'shortcode':self.short})
+        url_path = MYURL+url_path
         return url_path
 
 
