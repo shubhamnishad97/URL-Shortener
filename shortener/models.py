@@ -5,24 +5,34 @@ import string
 from .validators import valid_URL
 from django.core.urlresolvers import reverse
 
-# thank stackoverflow for this
-SIZE = getattr(settings,'SIZE',5)
 MYURL = getattr(settings,'MYURL','http://127.0.0.1:8000')
 
 
-def code_generator(size=SIZE,chars=string.ascii_letters+string.digits):
-    new_code = ''
-    for i in range(size):
-         new_code += random.choice(chars)
+def b62_encode(number):
+    base = string.digits+string.ascii_letters
+    assert number >= 0, 'positive integer required'
+    if number == 0:
+        return '0'
+    base62 = []
+    while number != 0:
+        number, i = divmod(number, 62)
+        base62.append(base[i])
+    return ''.join(reversed(base62))
 
-    return new_code
+# def code_generator(size=SIZE,chars=string.ascii_letters+string.digits):
+#     new_code = ''
+#     for i in range(size):
+#          new_code += random.choice(chars)
 
-def create_shortcode(instance,size=SIZE):
-    new_code = code_generator(size=size)
+#     return new_code
+
+def create_shortcode(instance):
     data = instance.__class__
-    qs_exists = data.objects.filter(short=new_code).exists()
-    if qs_exists:
-        return create_shortcode(size=size)
+    try:
+        last = data.objects.latest('id')
+        new_code = b62_encode(last.id)
+    except:
+        new_code = b62_encode(0)
     return new_code
 
 class URLManager(models.Manager):
@@ -35,7 +45,7 @@ class URLManager(models.Manager):
 # Create your models here.
 class shortenedUrl(models.Model):
     url = models.CharField(max_length=300,validators=[valid_URL])
-    short =models.CharField(max_length=SIZE,unique=True,blank=True)
+    short =models.CharField(max_length=100,unique=True,blank=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True)

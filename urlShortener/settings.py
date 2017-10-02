@@ -122,5 +122,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-SIZE = 5
 MYURL = 'http://127.0.0.1:8000'
