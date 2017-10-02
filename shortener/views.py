@@ -15,7 +15,8 @@ def redirectView(request, shortcode=None ,*args ,**kwargs ):
         return HttpResponseRedirect(obj.url)
 
     except:
-        return HttpResponse("URL Does not exist")
+        messages.add_message(request, messages.ERROR, 'URL Does not exist')
+        return render(request,'home.html')
 
 
 class HomeView(View):

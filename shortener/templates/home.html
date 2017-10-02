@@ -6,7 +6,16 @@ Shorten It!
 {% block content %}
 		<div class="text-center"> 
 			<h1>Shorten It!</h1>
-		 
+			
+		 	{% if messages %}
+                {% for message in messages %}
+                  <div class="alert alert-{{ message.tags }}">  <!-- singular -->
+                    <a class="close" data-dismiss="alert">×</a>
+                    {{ message|safe }}
+                  </div>
+                {% endfor %}
+             {% endif %}
+
 			<div>
 				<form method="POST" action=".">
 				    {% csrf_token %}
@@ -16,20 +25,5 @@ Shorten It!
 		  	</div>	
 		
 		</div>
-
-		{% if object %}
-		
-		<div class="text-center">
-			<br>
-			<p>{{object.url}}</p>
-			<div class="input-group input-group-lg">
-				<input class="form-control" type="text" value="{{object.get_short_url}}">
-		    </div>
-		    <br>
-		    <p>{{object.count}}</p>
-		</div>
-
-	   
-	{% endif %}
 
 {% endblock %}
