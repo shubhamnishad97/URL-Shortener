@@ -11,6 +11,7 @@
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css"/>
     <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css"/>
     <script src='https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js'></script>
+
     
 </head>
 <body>
@@ -27,9 +28,21 @@
           </div>
 
     <script src="{% static 'js/index.js' %}"></script>
-    <script src="{% static 'js/jquery.min.js'%}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="{% static 'js/tether.min.js'%}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.5/clipboard.min.js"></script>
+    <script>
+    (function(){
+        new Clipboard('#copy-button');
+    })();
+
+    $(document).ready(function(){
+    $("#copy-button").click(function(){
+        $("#copied").toggle();
+    });
+    });
+    </script>
 
 </body>
 </html>
