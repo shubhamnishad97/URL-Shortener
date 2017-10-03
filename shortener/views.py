@@ -48,5 +48,7 @@ class HomeView(View):
             else:
                 messages.add_message(request, messages.INFO, 'Shortened URL already exists')
 
+            return render(request, 'success.html',context)    
 
-        return render(request, 'success.html',context)
+
+        return render(request, 'home.html',context)
