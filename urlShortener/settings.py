@@ -128,4 +128,4 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-MYURL = 'http://127.0.0.1:8000'
+MYURL = 'https://shly.herokuapp.com/'
