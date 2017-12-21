@@ -13,6 +13,14 @@ I wanted my own solution and was also interested in particle.js hence this proje
 *   Beautiful background using [particle.js](http://vincentgarreau.com/particles.js/)
 *   Fully responsive. use any device and always find the best layout.
 
+
+
+
+<img src="docs/home.png" width="250">    <img src="docs/success.png" width="250">    <img src="docs/invalid.png" width="250">
+![](docs/full.PNG) 
+
+
+
 ## Working
 
 Each url has a unique id in the database. We use this id and encode it using [Base62](https://www.kerstner.at/2012/07/shortening-strings-using-base-62-encoding/) encoding. This encoded string is stored as the short url for the original url.
