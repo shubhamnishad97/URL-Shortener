@@ -16,7 +16,7 @@ I wanted my own solution and was also interested in particle.js hence this proje
 
 
 
-<img src="docs/home.png" width="250">    <img src="docs/success.png" width="250">    <img src="docs/invalid.png" width="250">
+<img src="docs/home.png" width="250">      <img src="docs/success.png" width="250">      <img src="docs/invalid.png" width="250">
 ![](docs/full.PNG) 
 
 
