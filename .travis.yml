@@ -20,4 +20,4 @@ install:
   - pip install django==$DJANGO --quiet
 
 script:
-  - python manage.py runserver && exit 0
+  - python manage.py test
