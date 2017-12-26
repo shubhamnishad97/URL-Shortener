@@ -1,4 +1,4 @@
-# URL-Shortener
+# URL-Shortener [![Build Status](https://travis-ci.org/shubhamnishad97/URL-Shortener.svg?branch=master)](https://travis-ci.org/shubhamnishad97/URL-Shortener)
 A simple and easy to use web app built using Django. Simply give the url you want reduced and get the new shortened url based on
 base62 encoding.
 
