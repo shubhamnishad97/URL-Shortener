@@ -10,6 +10,7 @@ I wanted my own solution and was also interested in particle.js hence this proje
 ## Features:
 
 *   Url shortening using [Base62](https://www.kerstner.at/2012/07/shortening-strings-using-base-62-encoding/) encoding.  (a-zA-Z0-9)
+*   REST API for retrieving data easily.
 *   Beautiful background using [particles.js](http://vincentgarreau.com/particles.js/)
 *   Fully responsive. use any device and always find the best layout.
 
