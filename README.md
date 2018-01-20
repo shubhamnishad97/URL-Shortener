@@ -51,9 +51,19 @@ Run this command to start the app:
 
 Visit `127.0.0.1:8000` on your web browser and don't forget to give me some feedback.
 
+## How to access the api
+to shorten url send POST request to:
+`http://yourdomain.com/api/<url to be shortened>/`
+
+to retrieve url send GET request to:
+`http://yourdomain/api/<shortcode>/`
+
+you can test api on:
+http://shly.pythonanywhere.com/api/
+
 ## Todo
 
-- making a REST api for this project.
+- ~~making a REST api for this project.~~
 - suggestions are welcome
 
 
